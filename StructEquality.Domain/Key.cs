@@ -1,9 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace StructEquality
+namespace StructEquality.Domain
 {
+    public static class KeyLong
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static long Make(int left, int right)
+        {
+            //implicit conversion of left to a long
+            long res = left;
+
+            //shift the bits creating an empty space on the right
+            // ex: 0x0000CFFF becomes 0xCFFF0000
+            res = (res << 32);
+
+            //combine the bits on the right with the previous value
+            // ex: 0xCFFF0000 | 0x0000ABCD becomes 0xCFFFABCD
+            res = res | (long)(uint)right; //uint first to prevent loss of signed bit
+
+            //return the combined result
+            return res;
+        }
+    }
+
     public class KeyClass
     {
         public int A { get; set; }
@@ -218,20 +240,20 @@ namespace StructEquality
         }
     }
 
-    public struct KeyStructEquatableTuple : IEquatable<KeyStructEquatableTuple>
+    public struct KeyStructEquatableValueTuple : IEquatable<KeyStructEquatableValueTuple>
     {
         public readonly int A;
         public readonly int B;
         public readonly int C;
 
-        public KeyStructEquatableTuple(int a, int b, int c)
+        public KeyStructEquatableValueTuple(int a, int b, int c)
         {
             A = a;
             B = b;
             C = c;
         }
 
-        public bool Equals(KeyStructEquatableTuple other) =>
+        public bool Equals(KeyStructEquatableValueTuple other) =>
             (A, B, C) == (other.A, other.B, other.C);
 
         public override int GetHashCode() =>
