@@ -49,11 +49,14 @@ namespace StructEquality.Domain
 
         public int GetHashCode(KeyClass x)
         {
-            var hashCode = -1872639489;
-            hashCode = hashCode * -1521134295 + x.A.GetHashCode();
-            hashCode = hashCode * -1521134295 + x.B.GetHashCode();
-            hashCode = hashCode * -1521134295 + x.C.GetHashCode();
-            return hashCode;
+            //unchecked
+            {
+                var hashCode = -1872639489;
+                hashCode = hashCode * -1521134295 + x.A.GetHashCode();
+                hashCode = hashCode * -1521134295 + x.B.GetHashCode();
+                hashCode = hashCode * -1521134295 + x.C.GetHashCode();
+                return hashCode;
+            }
         }
     }
 
@@ -81,11 +84,14 @@ namespace StructEquality.Domain
 
         public int GetHashCode(KeyStruct x)
         {
-            var hashCode = -1872639489;
-            hashCode = hashCode * -1521134295 + x.A.GetHashCode();
-            hashCode = hashCode * -1521134295 + x.B.GetHashCode();
-            hashCode = hashCode * -1521134295 + x.C.GetHashCode();
-            return hashCode;
+            //unchecked
+            {
+                var hashCode = -1872639489;
+                hashCode = hashCode * -1521134295 + x.A.GetHashCode();
+                hashCode = hashCode * -1521134295 + x.B.GetHashCode();
+                hashCode = hashCode * -1521134295 + x.C.GetHashCode();
+                return hashCode;
+            }
         }
     }
 
@@ -113,11 +119,14 @@ namespace StructEquality.Domain
 
         public int GetHashCode(KeyStructProperties x)
         {
-            var hashCode = -1872639489;
-            hashCode = hashCode * -1521134295 + x.A.GetHashCode();
-            hashCode = hashCode * -1521134295 + x.B.GetHashCode();
-            hashCode = hashCode * -1521134295 + x.C.GetHashCode();
-            return hashCode;
+            //unchecked
+            {
+                var hashCode = -1872639489;
+                hashCode = hashCode * -1521134295 + x.A.GetHashCode();
+                hashCode = hashCode * -1521134295 + x.B.GetHashCode();
+                hashCode = hashCode * -1521134295 + x.C.GetHashCode();
+                return hashCode;
+            }
         }
     }
 
@@ -148,14 +157,7 @@ namespace StructEquality.Domain
         }
 
         // If override GetHashCode - It'll be already another implementation case.
-        //public override int GetHashCode()
-        //{
-        //    var hashCode = -1872639489;
-        //    hashCode = hashCode * -1521134295 + A.GetHashCode();
-        //    hashCode = hashCode * -1521134295 + B.GetHashCode();
-        //    hashCode = hashCode * -1521134295 + C.GetHashCode();
-        //    return hashCode;
-        //}
+        //public override int GetHashCode();
     }
 
     /// <summary>
@@ -175,14 +177,7 @@ namespace StructEquality.Domain
         }
 
         // If override GetHashCode - It'll be already another implementation case.
-        //public override int GetHashCode()
-        //{
-        //    var hashCode = -1872639489;
-        //    hashCode = hashCode * -1521134295 + A.GetHashCode();
-        //    hashCode = hashCode * -1521134295 + B.GetHashCode();
-        //    hashCode = hashCode * -1521134295 + C.GetHashCode();
-        //    return hashCode;
-        //}
+        //public override int GetHashCode();
     }
 
     public readonly struct KeyStructEquals
@@ -206,11 +201,14 @@ namespace StructEquality.Domain
 
         public override int GetHashCode()
         {
-            var hashCode = -1872639489;
-            hashCode = hashCode * -1521134295 + A.GetHashCode();
-            hashCode = hashCode * -1521134295 + B.GetHashCode();
-            hashCode = hashCode * -1521134295 + C.GetHashCode();
-            return hashCode;
+            //unchecked
+            {
+                var hashCode = -1872639489;
+                hashCode = hashCode * -1521134295 + A.GetHashCode();
+                hashCode = hashCode * -1521134295 + B.GetHashCode();
+                hashCode = hashCode * -1521134295 + C.GetHashCode();
+                return hashCode;
+            }
         }
     }
 
@@ -232,11 +230,14 @@ namespace StructEquality.Domain
 
         public override int GetHashCode()
         {
-            var hashCode = -1872639489;
-            hashCode = hashCode * -1521134295 + A.GetHashCode();
-            hashCode = hashCode * -1521134295 + B.GetHashCode();
-            hashCode = hashCode * -1521134295 + C.GetHashCode();
-            return hashCode;
+            //unchecked
+            {
+                var hashCode = -1872639489;
+                hashCode = hashCode * -1521134295 + A.GetHashCode();
+                hashCode = hashCode * -1521134295 + B.GetHashCode();
+                hashCode = hashCode * -1521134295 + C.GetHashCode();
+                return hashCode;
+            }
         }
     }
 

@@ -220,9 +220,9 @@ namespace StructEquality
         }
 
         [Benchmark]
-        public Dictionary<(int, int, int), object> NetDictionary_KeyStructValueTupleDictionary()
+        public Dictionary<(int A, int B, int C), object> NetDictionary_ValueTuple()
         {
-            var dict = new Dictionary<(int, int, int), object>(Count);
+            var dict = new Dictionary<(int A, int B, int C), object>(Count);
 
             foreach (var (A, B, C) in _inputs)
             {

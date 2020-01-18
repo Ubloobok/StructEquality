@@ -43,7 +43,7 @@ IterationCount=15  LaunchCount=2  WarmupCount=10
 |                NetDictionary_KeyStructEquals | 100000 |  4.604 ms |  1.68 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
 |       NetDictionary_KeyStructEquatableManual | 100000 |  4.820 ms |  1.76 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
 |   NetDictionary_KeyStructEquatableValueTuple | 100000 |  6.672 ms |  2.43 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
-|  NetDictionary_KeyStructValueTupleDictionary | 100000 |  6.537 ms |  2.38 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
+|  NetDictionary_ValueTuple | 100000 |  6.537 ms |  2.38 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
 |                            IntDictionary_Int | 100000 |  3.246 ms |  1.18 |  328.1250 |  328.1250 | 328.1250 |    2.9 MB |
 |                      EquatableDictionary_Int | 100000 |  3.223 ms |  1.17 |  328.1250 |  328.1250 | 328.1250 |    2.9 MB |
 | EquatableDictionary_KeyStructEquatableManual | 100000 |  4.091 ms |  1.49 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |

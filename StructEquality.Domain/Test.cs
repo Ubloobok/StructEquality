@@ -10,9 +10,13 @@ namespace StructEquality.Domain
         {
             Assert(new KeyClassComparer().Equals(new KeyClass(1, 2, 3), new KeyClass(1, 2, 3)));
             Assert(!new KeyClassComparer().Equals(new KeyClass(3, 2, 1), new KeyClass(1, 2, 3)));
+            Assert(new KeyClassComparer().GetHashCode(new KeyClass(1, 2, 3)) == new KeyClassComparer().GetHashCode(new KeyClass(1, 2, 3)));
+            Assert(new KeyClassComparer().GetHashCode(new KeyClass(3, 2, 1)) != new KeyClassComparer().GetHashCode(new KeyClass(1, 2, 3)));
 
             Assert(new KeyStructComparer().Equals(new KeyStruct(1, 2, 3), new KeyStruct(1, 2, 3)));
             Assert(!new KeyStructComparer().Equals(new KeyStruct(3, 2, 1), new KeyStruct(1, 2, 3)));
+            Assert(new KeyStructComparer().GetHashCode(new KeyStruct(1, 2, 3)) == new KeyStructComparer().GetHashCode(new KeyStruct(1, 2, 3)));
+            Assert(new KeyStructComparer().GetHashCode(new KeyStruct(3, 2, 1)) != new KeyStructComparer().GetHashCode(new KeyStruct(1, 2, 3)));
 
             Assert(new KeyStructProperties(1, 2, 3).Equals(new KeyStructProperties(1, 2, 3)));
             Assert(!new KeyStructProperties(3, 2, 1).Equals(new KeyStructProperties(1, 2, 3)));
@@ -28,9 +32,13 @@ namespace StructEquality.Domain
 
             Assert(new KeyStructEquals(1, 2, 3).Equals(new KeyStructEquals(1, 2, 3)));
             Assert(!new KeyStructEquals(3, 2, 1).Equals(new KeyStructEquals(1, 2, 3)));
+            Assert(new KeyStructEquals(1, 2, 3).GetHashCode() == new KeyStructEquals(1, 2, 3).GetHashCode());
+            Assert(new KeyStructEquals(3, 2, 1).GetHashCode() != new KeyStructEquals(1, 2, 3).GetHashCode());
 
             Assert(new KeyStructEquatableManual(1, 2, 3).Equals(new KeyStructEquatableManual(1, 2, 3)));
             Assert(!new KeyStructEquatableManual(3, 2, 1).Equals(new KeyStructEquatableManual(1, 2, 3)));
+            Assert(new KeyStructEquatableManual(1, 2, 3).GetHashCode() == new KeyStructEquatableManual(1, 2, 3).GetHashCode());
+            Assert(new KeyStructEquatableManual(3, 2, 1).GetHashCode() != new KeyStructEquatableManual(1, 2, 3).GetHashCode());
 
             Assert(new KeyStructEquatableValueTuple(1, 2, 3).Equals(new KeyStructEquatableValueTuple(1, 2, 3)));
             Assert(!new KeyStructEquatableValueTuple(3, 2, 1).Equals(new KeyStructEquatableValueTuple(1, 2, 3)));
