@@ -20,6 +20,7 @@ namespace StructEquality
         {
             public Config() => Add(Job
                 .MediumRun
+                .WithIterationCount(10) // Default: 15
                 .With(Platform.X64)
                 .With(Jit.RyuJit));
         }

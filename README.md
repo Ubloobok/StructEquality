@@ -1,6 +1,6 @@
 # StructEquality
 
-Performance comparison of different Dictionary usages in .NET/C#.
+Performance comparison of different Struct and Dictionary usages in .NET/C#.
 
 In addition to standard `Dictionary<TKey, TValue>`, also includes experimental:
 
@@ -23,11 +23,13 @@ Intel Core i7-8550U CPU 1.80GHz (Kaby Lake R), 1 CPU, 8 logical and 4 physical c
   MediumRun : .NET Framework 4.8 (4.8.4075.0), X64 RyuJIT
 
 Job=MediumRun  Jit=RyuJit  Platform=X64
-IterationCount=15  LaunchCount=2  WarmupCount=10
+IterationCount=10  LaunchCount=2  WarmupCount=10
 
 ```
 
-### Dictionary, Set (this[key] = value)
+### Dictionary.Set
+
+`this[key] = value`
 
 |                                       Method |  Count |      Mean | Ratio |     Gen 0 |     Gen 1 |    Gen 2 | Allocated |
 |--------------------------------------------- |------- |----------:|------:|----------:|----------:|---------:|----------:|
@@ -49,27 +51,29 @@ IterationCount=15  LaunchCount=2  WarmupCount=10
 | EquatableDictionary_KeyStructEquatableManual | 100000 |  4.091 ms |  1.49 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
 |               EquatableDictionary_ValueTuple | 100000 |  6.391 ms |  2.33 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
 
-### Dictionary, TryGet (TryGetValue(key))
+### Dictionary.TryGet
+
+`TryGetValue(key, out value)`
 
 |                                       Method |  Count |      Mean | Ratio |     Gen 0 | Gen 1 | Gen 2 |  Allocated |
 |--------------------------------------------- |------- |----------:|------:|----------:|------:|------:|-----------:|
-|                            NetDictionary_Int | 100000 |  2.253 ms |  1.00 |         - |     - |     - |          - |
-|                           NetDictionary_Long | 100000 |  2.435 ms |  1.08 |         - |     - |     - |          - |
-|               NetDictionary_KeyClassComparer | 100000 |  3.052 ms |  1.36 |  761.7188 |     - |     - |  3209451 B |
-|                         NetDictionary_String | 100000 | 38.326 ms | 17.02 | 6285.7143 |     - |     - | 26478019 B |
-|              NetDictionary_KeyStructComparer | 100000 |  3.916 ms |  1.74 |         - |     - |     - |          - |
-|    NetDictionary_KeyStructPropertiesComparer | 100000 |  3.916 ms |  1.74 |         - |     - |     - |          - |
-|          NetDictionary_KeyStructLostComparer | 100000 | 10.137 ms |  4.50 | 2343.7500 |     - |     - |  9862787 B |
-|         NetDictionary_KeyStructTightlyPacked | 100000 | 12.098 ms |  5.39 | 2390.6250 |     - |     - | 10092038 B |
-|      NetDictionary_KeyStructNotTightlyPacked | 100000 | 15.680 ms |  6.97 | 1484.3750 |     - |     - |  6232924 B |
-|                NetDictionary_KeyStructEquals | 100000 |  4.316 ms |  1.94 |         - |     - |     - |      352 B |
-|       NetDictionary_KeyStructEquatableManual | 100000 |  3.887 ms |  1.72 |         - |     - |     - |          - |
-|   NetDictionary_KeyStructEquatableValueTuple | 100000 |  4.687 ms |  2.08 |         - |     - |     - |          - |
-|                     NetDictionary_ValueTuple | 100000 |  4.303 ms |  1.91 |         - |     - |     - |          - |
-|                            IntDictionary_Int | 100000 |  2.358 ms |  1.05 |         - |     - |     - |          - |
-|                      EquatableDictionary_Int | 100000 |  2.360 ms |  1.05 |         - |     - |     - |          - |
-| EquatableDictionary_KeyStructEquatableManual | 100000 |  2.648 ms |  1.17 |         - |     - |     - |          - |
-|               EquatableDictionary_ValueTuple | 100000 |  4.695 ms |  2.08 |         - |     - |     - |          - |
+|                            NetDictionary_Int | 100000 |  2.337 ms |  1.00 |         - |     - |     - |          - |
+|                           NetDictionary_Long | 100000 |  2.432 ms |  1.04 |         - |     - |     - |          - |
+|               NetDictionary_KeyClassComparer | 100000 |  3.018 ms |  1.30 |  761.7188 |     - |     - |  3209451 B |
+|                         NetDictionary_String | 100000 | 38.909 ms | 16.70 | 6307.6923 |     - |     - | 26478111 B |
+|              NetDictionary_KeyStructComparer | 100000 |  4.180 ms |  1.80 |         - |     - |     - |          - |
+|    NetDictionary_KeyStructPropertiesComparer | 100000 |  3.899 ms |  1.67 |         - |     - |     - |          - |
+|          NetDictionary_KeyStructLostComparer | 100000 | 10.302 ms |  4.42 | 2343.7500 |     - |     - |  9869571 B |
+|         NetDictionary_KeyStructTightlyPacked | 100000 | 11.317 ms |  4.85 | 2406.2500 |     - |     - | 10096519 B |
+|      NetDictionary_KeyStructNotTightlyPacked | 100000 | 15.574 ms |  6.68 | 1484.3750 |     - |     - |  6271708 B |
+|                NetDictionary_KeyStructEquals | 100000 |  3.922 ms |  1.68 |         - |     - |     - |      320 B |
+|       NetDictionary_KeyStructEquatableManual | 100000 |  3.892 ms |  1.67 |         - |     - |     - |          - |
+|   NetDictionary_KeyStructEquatableValueTuple | 100000 |  4.632 ms |  1.99 |         - |     - |     - |          - |
+|                     NetDictionary_ValueTuple | 100000 |  4.316 ms |  1.85 |         - |     - |     - |          - |
+|                            IntDictionary_Int | 100000 |  5.199 ms |  2.26 |         - |     - |     - |          - |
+|                      EquatableDictionary_Int | 100000 |  3.586 ms |  1.56 |         - |     - |     - |          - |
+| EquatableDictionary_KeyStructEquatableManual | 100000 |  2.622 ms |  1.13 |         - |     - |     - |          - |
+|               EquatableDictionary_ValueTuple | 100000 |  4.679 ms |  2.01 |         - |     - |     - |          - |
 
 ## .NET Core 2.0
 
@@ -82,11 +86,13 @@ Intel Core i7-8550U CPU 1.80GHz (Kaby Lake R), 1 CPU, 8 logical and 4 physical c
   MediumRun : .NET Core 2.0.9 (CoreCLR 4.6.26614.01, CoreFX 4.6.26614.01), X64 RyuJIT
 
 Job=MediumRun  Jit=RyuJit  Platform=X64
-IterationCount=15  LaunchCount=2  WarmupCount=10
+IterationCount=10  LaunchCount=2  WarmupCount=10
 
 ```
 
-### Dictionary, Set (this[key] = value)
+### Dictionary.Set
+
+`this[key] = value`
 
 |                                       Method |  Count |      Mean | Ratio |     Gen 0 |     Gen 1 |    Gen 2 | Allocated |
 |--------------------------------------------- |------- |----------:|------:|----------:|----------:|---------:|----------:|
@@ -108,25 +114,27 @@ IterationCount=15  LaunchCount=2  WarmupCount=10
 | EquatableDictionary_KeyStructEquatableManual | 100000 |  4.121 ms |  1.13 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
 |               EquatableDictionary_ValueTuple | 100000 |  5.751 ms |  1.58 |  328.1250 |  328.1250 | 328.1250 |   3.73 MB |
 
-### Dictionary, TryGet (TryGetValue(key, out value))
+### Dictionary.TryGet
+
+`TryGetValue(key, out value)`
 
 |                                       Method |  Count |      Mean | Ratio |     Gen 0 | Gen 1 | Gen 2 |  Allocated |
 |--------------------------------------------- |------- |----------:|------:|----------:|------:|------:|-----------:|
-|                            NetDictionary_Int | 100000 |  2.255 ms |  1.00 |         - |     - |     - |          - |
-|                           NetDictionary_Long | 100000 |  2.373 ms |  1.05 |         - |     - |     - |          - |
-|               NetDictionary_KeyClassComparer | 100000 |  2.985 ms |  1.32 |  761.7188 |     - |     - |  3200000 B |
-|                         NetDictionary_String | 100000 | 37.760 ms | 16.75 | 6250.0000 |     - |     - | 26400000 B |
+|                            NetDictionary_Int | 100000 |  2.249 ms |  1.00 |         - |     - |     - |          - |
+|                           NetDictionary_Long | 100000 |  2.358 ms |  1.05 |         - |     - |     - |          - |
+|               NetDictionary_KeyClassComparer | 100000 |  3.055 ms |  1.36 |  761.7188 |     - |     - |  3200000 B |
+|                         NetDictionary_String | 100000 | 36.838 ms | 16.38 | 6285.7143 |     - |     - | 26400000 B |
 |              NetDictionary_KeyStructComparer | 100000 |  3.913 ms |  1.74 |         - |     - |     - |          - |
-|    NetDictionary_KeyStructPropertiesComparer | 100000 |  4.503 ms |  1.99 |         - |     - |     - |          - |
-|          NetDictionary_KeyStructLostComparer | 100000 | 13.965 ms |  6.19 | 2343.7500 |     - |     - |  9842432 B |
-|         NetDictionary_KeyStructTightlyPacked | 100000 | 11.059 ms |  4.90 | 2390.6250 |     - |     - | 10076288 B |
-|      NetDictionary_KeyStructNotTightlyPacked | 100000 | 17.400 ms |  7.72 | 1468.7500 |     - |     - |  6254624 B |
-|                NetDictionary_KeyStructEquals | 100000 |  3.907 ms |  1.73 |         - |     - |     - |      256 B |
-|       NetDictionary_KeyStructEquatableManual | 100000 |  3.897 ms |  1.73 |         - |     - |     - |          - |
-|   NetDictionary_KeyStructEquatableValueTuple | 100000 |  4.663 ms |  2.07 |         - |     - |     - |          - |
-|                     NetDictionary_ValueTuple | 100000 |  4.279 ms |  1.90 |         - |     - |     - |          - |
-|                            IntDictionary_Int | 100000 |  2.316 ms |  1.03 |         - |     - |     - |          - |
-|                      EquatableDictionary_Int | 100000 |  2.327 ms |  1.03 |         - |     - |     - |          - |
+|    NetDictionary_KeyStructPropertiesComparer | 100000 |  3.883 ms |  1.73 |         - |     - |     - |          - |
+|          NetDictionary_KeyStructLostComparer | 100000 | 13.596 ms |  6.82 | 2343.7500 |     - |     - |  9834240 B |
+|         NetDictionary_KeyStructTightlyPacked | 100000 | 20.844 ms |  9.27 | 2375.0000 |     - |     - | 10062464 B |
+|      NetDictionary_KeyStructNotTightlyPacked | 100000 | 17.077 ms |  7.60 | 1468.7500 |     - |     - |  6202700 B |
+|                NetDictionary_KeyStructEquals | 100000 |  3.915 ms |  1.74 |         - |     - |     - |      192 B |
+|       NetDictionary_KeyStructEquatableManual | 100000 |  3.911 ms |  1.74 |         - |     - |     - |          - |
+|   NetDictionary_KeyStructEquatableValueTuple | 100000 |  4.698 ms |  2.09 |         - |     - |     - |          - |
+|                     NetDictionary_ValueTuple | 100000 |  4.267 ms |  1.90 |         - |     - |     - |          - |
+|                            IntDictionary_Int | 100000 |  2.328 ms |  1.04 |         - |     - |     - |          - |
+|                      EquatableDictionary_Int | 100000 |  2.323 ms |  1.03 |         - |     - |     - |          - |
 | EquatableDictionary_KeyStructEquatableManual | 100000 |  2.587 ms |  1.15 |         - |     - |     - |          - |
-|               EquatableDictionary_ValueTuple | 100000 |  4.595 ms |  2.04 |         - |     - |     - |          - |
+|               EquatableDictionary_ValueTuple | 100000 |  4.706 ms |  2.09 |         - |     - |     - |          - |
 

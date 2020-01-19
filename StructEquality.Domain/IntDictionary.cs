@@ -375,7 +375,7 @@ namespace StructEquality.Domain
                 {
                     // CHANGE: Comparer and Equals are not required.
                     //if (entries[i].hashCode == hashCode && comparer.Equals(entries[i].key, key)) return i;
-                    if (entries[i].hashCode == hashCode) return i;
+                    if (entries[i].key == key) return i;
                 }
             }
             return -1;
@@ -412,7 +412,7 @@ namespace StructEquality.Domain
             {
                 // CHANGE: Comparer and Equals are not required.
                 //if (entries[i].hashCode == hashCode && comparer.Equals(entries[i].key, key))
-                if (entries[i].hashCode == hashCode)
+                if (entries[i].key == key)
                 {
                     if (add)
                     {
@@ -585,7 +585,7 @@ namespace StructEquality.Domain
                 {
                     // CHANGE: Comparer and Equals are not required.
                     //if (entries[i].hashCode == hashCode && comparer.Equals(entries[i].key, key))
-                    if (entries[i].hashCode == hashCode)
+                    if (entries[i].key == key)
                     {
                         if (last < 0)
                         {

@@ -9,7 +9,7 @@ using BenchmarkDotNet.Jobs;
 
 using StructEquality.Domain;
 
-namespace StructEquality
+namespace StructEquality.Domain
 {
     [Config(typeof(Config))]
     [HtmlExporter]
@@ -20,6 +20,7 @@ namespace StructEquality
         {
             public Config() => Add(Job
                 .MediumRun
+                .WithIterationCount(10) // Default: 15
                 .With(Platform.X64)
                 .With(Jit.RyuJit));
         }
